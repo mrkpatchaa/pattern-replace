@@ -1,10 +1,10 @@
 {
-  "name": "keycloak-config-file-duplicator",
+  "name": "pattern-replace",
   "version": "1.0.0",
   "description": "Keycloak Configuration file duplicator",
-  "main": "index.js",
+  "main": "src/main.js",
   "bin": {
-    "keycloak-config-file-duplicator": "duplicate.js"
+    "pattern-replace": "bin/index.js"
   },
   "dependencies": {
     "uuid": "^3.2.1"
@@ -58,12 +58,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rmkpatchaa/keycloak-config-file-duplicator.git"
+    "url": "git+https://github.com/rmkpatchaa/pattern-replace.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rmkpatchaa/keycloak-config-file-duplicator/issues"
+    "url": "https://github.com/rmkpatchaa/pattern-replace/issues"
   },
-  "homepage": "https://github.com/rmkpatchaa/keycloak-config-file-duplicator#readme"
+  "homepage": "https://github.com/rmkpatchaa/pattern-replace#readme"
 }
