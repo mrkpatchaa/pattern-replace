@@ -1,0 +1,69 @@
+{
+  "name": "keycloak-config-file-duplicator",
+  "version": "1.0.0",
+  "description": "Keycloak Configuration file duplicator",
+  "main": "index.js",
+  "bin": {
+    "keycloak-config-file-duplicator": "duplicate.js"
+  },
+  "dependencies": {
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0-beta.38",
+    "@babel/core": "^7.0.0-beta.38",
+    "@babel/node": "^7.0.0-beta.38",
+    "@babel/plugin-proposal-class-properties": "^7.0.0-beta.38",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.38",
+    "@babel/plugin-transform-runtime": "^7.0.0-beta.38",
+    "@babel/plugin-transform-spread": "^7.0.0-beta.38",
+    "@babel/preset-env": "^7.0.0-beta.38",
+    "@babel/preset-react": "^7.0.0-beta.38",
+    "@babel/runtime": "^7.0.0-beta.38",
+    "autoprefixer": "^7.2.5",
+    "babel-eslint": "^8.2.1",
+    "babel-loader": "8.0.0-beta.0",
+    "bootstrap": "^4.0.0",
+    "copy-webpack-plugin": "^4.3.1",
+    "css-loader": "^0.28.9",
+    "eslint": "^4.16.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-prettier": "^2.5.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "gh-pages": "^1.1.0",
+    "html-webpack-plugin": "^2.30.1",
+    "node-sass": "^4.7.2",
+    "nodemon": "^1.14.11",
+    "postcss-loader": "^2.0.10",
+    "precss": "^3.1.0",
+    "prettier": "^1.10.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "sass-loader": "^6.0.6",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.11.1",
+    "webpack-merge": "^4.1.1"
+  },
+  "scripts": {
+    "build": "rimraf dist && webpack --config webpack/prod.config.js",
+    "dev": "webpack-dev-server --port 3000 --config webpack/dev.config.js --progress --colors --hot --content-base dist",
+    "deploy": "yarn build && gh-pages -d dist"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "js": "babel-node"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rmkpatchaa/keycloak-config-file-duplicator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rmkpatchaa/keycloak-config-file-duplicator/issues"
+  },
+  "homepage": "https://github.com/rmkpatchaa/keycloak-config-file-duplicator#readme"
+}

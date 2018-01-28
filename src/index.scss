@@ -1,0 +1,12 @@
+@import "~bootstrap/scss/bootstrap";
+
+#container {
+  height: 700px;
+}
+
+.navbar-nav-svg {
+  display: inline-block !important;
+  width: 1.5rem;
+  height: 1.5rem;
+  vertical-align: middle;
+}

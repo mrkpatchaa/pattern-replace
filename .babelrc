@@ -1,0 +1,22 @@
+{
+  "sourceMaps": "both",
+  "plugins": [
+    "@babel/transform-runtime",
+    "@babel/plugin-transform-spread",
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-class-properties"
+  ],
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        }
+      }
+    ],
+    [
+      "@babel/react"
+    ]
+  ]
+}
