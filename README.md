@@ -1,2 +1,2 @@
 # Pattern replace
-Search and eplace by pattern
+Search and Replace by pattern
