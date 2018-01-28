@@ -1,2 +1,2 @@
-# keycloak-config-file-duplicator
-Keycloak Configuration file duplicator
+# Pattern replace
+Search and eplace by pattern
