@@ -1,11 +1,15 @@
 const uuidv1 = require('uuid/v1');
 const uuidv4 = require('uuid/v4');
 
-const getArray = size => Array.from(Array(size).keys());
+export const UUID_PATTERN =
+  '[a-f0-9]{8}-?[a-f0-9]{4}-?[1-5][a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}';
 
-const isFunction = replacementOption => replacementOption.startsWith('uuid');
+export const getArray = (size = 1) => Array.from(Array(size).keys());
 
-const getReplacementValue = option => {
+export const isFunction = replacementOption =>
+  replacementOption.startsWith('uuid');
+
+export const getReplacementValue = option => {
   switch (option) {
     case 'uuidv1':
       return uuidv1();
@@ -13,6 +17,15 @@ const getReplacementValue = option => {
       return uuidv4();
     default:
       throw new Error('Unkown replacement function');
+  }
+};
+
+export const getPattern = pattern => {
+  switch (pattern) {
+    case 'uuid':
+      return UUID_PATTERN;
+    default:
+      return pattern;
   }
 };
 
@@ -25,7 +38,7 @@ const replace = (content, pattern, replacement = 'uuidv1') => {
     return content.replace(new RegExp(pattern, 'gi'), replacement);
   }
 
-  const match = content.match(new RegExp(pattern, 'gi'));
+  const match = content.match(new RegExp(getPattern(pattern), 'gi'));
   if (!match) {
     return content;
   }

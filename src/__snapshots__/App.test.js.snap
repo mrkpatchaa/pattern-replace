@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders the application 1`] = `
+<div
+  className="row component-app h-100 pt-2 pb-2"
+>
+  <div
+    className="col-sm"
+  >
+    <div
+      className="border border-primary rounded bg-white h-100"
+    >
+      <form
+        className="h-100"
+      >
+        <div
+          className="form-group h-100"
+        >
+          <textarea
+            className="code form-control h-100"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div
+    className="col-sm-3"
+  >
+    <div
+      className="border border-primary rounded h-100"
+    >
+      <div
+        className="align-middle"
+      >
+        <form>
+          <div
+            className="form-group"
+          >
+            <label
+              className="text-white text-uppercase font-weight-bold"
+              htmlFor="replaceOption"
+            >
+              Pattern
+            </label>
+            <select
+              className="form-control"
+              id="pattern"
+              onChange={[Function]}
+              value="uuid"
+            >
+              <option
+                value="uuid"
+              >
+                UUID
+              </option>
+              <option
+                value="custom"
+              >
+                Custom
+              </option>
+            </select>
+          </div>
+          <div
+            className="form-group"
+          >
+            <label
+              className="text-white text-uppercase font-weight-bold"
+              htmlFor="replaceOption"
+            >
+              Replace with
+            </label>
+            <select
+              className="form-control"
+              id="replaceOption"
+              onChange={[Function]}
+              value={undefined}
+            >
+              <option
+                value="uuidv1"
+              >
+                UUID (V1)
+              </option>
+              <option
+                value="uuidv4"
+              >
+                UUID (V4)
+              </option>
+              <option
+                value="custom"
+              >
+                Custom text
+              </option>
+            </select>
+          </div>
+        </form>
+        <button
+          className="btn btn-outline-light btn-lg btn-block"
+          id="replaceButton"
+          onClick={[Function]}
+          type="button"
+        >
+          Replace
+        </button>
+      </div>
+    </div>
+  </div>
+  <div
+    className="col-sm"
+  >
+    <div
+      className="border border-primary rounded bg-white h-100"
+    >
+      <form
+        className="h-100"
+      >
+        <div
+          className="form-group h-100"
+        >
+          <textarea
+            className="code form-control h-100"
+            id="outputText"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

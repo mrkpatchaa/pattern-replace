@@ -4,14 +4,12 @@ import replace from './main';
 
 import './App.scss';
 
-const defaultPattern =
-  '[a-z0-9]{8}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{4}-[a-z0-9]{12}';
-
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       option: 'uuidv1',
+      pattern: 'uuid',
       patternError: '',
       replacementError: '',
     };
@@ -21,23 +19,29 @@ class App extends React.Component {
     this.setState({option: event.target.value});
   };
 
+  handlePatternChange = event => {
+    this.setState({pattern: event.target.value});
+  };
+
   handleReplace = () => {
     this.setState({patternError: '', replacementError: ''}, () => {
-      if (!this.pattern.value) {
+      if (this.state.pattern === 'custom' && !this.customPattern.value) {
         this.setState({patternError: 'Pattern is mandatory'});
         return;
       }
-      if (this.state.option === 'text' && !this.replacementText.value) {
+      if (this.state.option === 'custom' && !this.customReplacement.value) {
         this.setState({replacementError: 'Replacement text is mandatory'});
         return;
       }
       this.outputText.value = '';
       this.outputText.value = replace(
         this.sourceText.value,
-        this.pattern.value,
-        this.state.option.startsWith('uuid')
-          ? this.state.option
-          : this.replacementText.value,
+        this.state.pattern === 'custom'
+          ? this.customPattern.value
+          : this.state.pattern,
+        this.state.option === 'custom'
+          ? this.customReplacement.value
+          : this.state.option,
       );
     });
   };
@@ -63,24 +67,35 @@ class App extends React.Component {
               <form>
                 <div className="form-group">
                   <label
-                    htmlFor="pattern"
+                    htmlFor="replaceOption"
                     className="text-white text-uppercase font-weight-bold">
                     Pattern
                   </label>
-                  <input
-                    type="text"
+                  <select
+                    value={this.state.pattern}
                     className="form-control"
-                    placeholder="[a-z0-9]{9}"
                     id="pattern"
-                    defaultValue={defaultPattern}
-                    ref={input => (this.pattern = input)}
-                  />
-                  {this.state.patternError.length > 0 && (
-                    <div className="alert alert-danger p-1 mt-1" role="alert">
-                      {this.state.patternError}
-                    </div>
-                  )}
+                    onChange={this.handlePatternChange}>
+                    <option value={'uuid'}>UUID</option>
+                    <option value={'custom'}>Custom</option>
+                  </select>
                 </div>
+                {this.state.pattern === 'custom' && (
+                  <div className="form-group">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Custom pattern"
+                      id="customPattern"
+                      ref={input => (this.customPattern = input)}
+                    />
+                    {this.state.patternError.length > 0 && (
+                      <div className="alert alert-danger p-1 mt-1" role="alert">
+                        {this.state.patternError}
+                      </div>
+                    )}
+                  </div>
+                )}
                 <div className="form-group">
                   <label
                     htmlFor="replaceOption"
@@ -94,16 +109,17 @@ class App extends React.Component {
                     onChange={this.handleOptionChange}>
                     <option value={'uuidv1'}>UUID (V1)</option>
                     <option value={'uuidv4'}>UUID (V4)</option>
-                    <option value={'text'}>Custom text</option>
+                    <option value={'custom'}>Custom text</option>
                   </select>
                 </div>
-                {this.state.option === 'text' && (
+                {this.state.option === 'custom' && (
                   <div className="form-group">
                     <input
                       type="text"
                       className="form-control"
                       placeholder="Replacement text"
-                      ref={input => (this.replacementText = input)}
+                      id="customReplacement"
+                      ref={input => (this.customReplacement = input)}
                     />
                     {this.state.replacementError.length > 0 && (
                       <div className="alert alert-danger p-1 mt-1" role="alert">
@@ -116,6 +132,7 @@ class App extends React.Component {
               <button
                 onClick={this.handleReplace}
                 type="button"
+                id="replaceButton"
                 className="btn btn-outline-light btn-lg btn-block">
                 Replace
               </button>
@@ -128,6 +145,7 @@ class App extends React.Component {
               <div className="form-group h-100">
                 <textarea
                   className="code form-control h-100"
+                  id="outputText"
                   ref={text => (this.outputText = text)}
                 />
               </div>
