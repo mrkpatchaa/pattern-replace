@@ -9,7 +9,7 @@
   "scripts": {
     "build": "rimraf dist && webpack --config webpack/prod.config.js",
     "dev": "webpack-dev-server --config webpack/dev.config.js --progress --hot",
-    "deploy": "yarn build && gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "test": "jest -u --watch",
     "coverage": "jest -u --coverage"
   },
