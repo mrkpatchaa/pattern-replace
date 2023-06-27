@@ -1,5 +1,4 @@
-const uuidv1 = require('uuid/v1');
-const uuidv4 = require('uuid/v4');
+const { v1: uuidv1 , v4: uuidv4 } = require('uuid');
 
 export const UUID_PATTERN =
   '[a-f0-9]{8}-?[a-f0-9]{4}-?[1-5][a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}';

@@ -1,20 +1,9 @@
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const outDir = path.resolve(__dirname, '../dist');
-const filesToCopy = [
-  {from: path.resolve(__dirname, '../src/icons'), to: outDir},
-  {from: path.resolve(__dirname, '../src/manifest.json'), to: outDir},
-  {from: path.resolve(__dirname, '../src/browserconfig.xml'), to: outDir},
-];
-
-const extractSass = new ExtractTextPlugin({
-  filename: '[name].[contenthash].css',
-  // disable: process.env.NODE_ENV === 'development',
-});
 
 module.exports = {
   entry: [path.resolve(__dirname, '../src/index.js')],
@@ -32,17 +21,11 @@ module.exports = {
       },
       {
         test: /\.(scss)$/,
-        use: extractSass.extract({
           use: [
-            {
-              loader: 'css-loader', // translates CSS into CommonJS modules
-            },
-            {
-              loader: 'sass-loader', // compiles Sass to CSS
-            },
-          ],
-          fallback: 'style-loader',
-        }),
+            MiniCssExtractPlugin.loader,
+            'css-loader', // translates CSS into CommonJS modules
+            'sass-loader', // compiles Sass to CSS
+          ]
       },
     ],
   },
@@ -59,10 +42,14 @@ module.exports = {
     colors: true,
   },
   plugins: [
-    extractSass,
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../src/index.html'),
     }),
-    new CopyWebpackPlugin(filesToCopy, {copyUnmodified: false}),
+    new CopyWebpackPlugin({patterns: [
+      {from: path.resolve(__dirname, '../src/icons'), to: outDir},
+      {from: path.resolve(__dirname, '../src/manifest.json'), to: outDir},
+      {from: path.resolve(__dirname, '../src/browserconfig.xml'), to: outDir},
+    ]}),
   ],
 };

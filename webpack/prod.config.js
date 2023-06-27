@@ -1,6 +1,5 @@
 const base = require('./base.config');
 const merge = require('webpack-merge');
-const path = require('path');
 const webpack = require('webpack');
 
 const productionConfig = {
